@@ -17,9 +17,18 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+
+    public function __construct(){
+        parent::__construct();
+        $this->output->enable_profiler(TRUE);
+    }
+
 	public function index()
 	{
-		$this->load->view('welcome_message');
+        $this->load->library('allegro');
+        $user_id = $this->allegro->doGetUserID('country-id', 'foxsmoker', 'puste', 'webapi-key');
+
+        print_r($user_id);
 	}
 }
 
